@@ -20,27 +20,31 @@ import fitness.serviceImpl.ProfileService;
 @RequestMapping("/api/profiles")
 @CrossOrigin("*")
 public class ProfileController {
-@Autowired
-private ProfileService service;
+	@Autowired
+	private ProfileService service;
 
-@GetMapping("/all")
-public List<Profile> getAllProfiles(){
-	return service.getAllProfiles();
+	@GetMapping("/all")
+	public List<Profile> getAllProfiles() {
+		return service.getAllProfiles();
 	}
-@GetMapping("/{id}") 
-public Profile getById(@PathVariable Long id) {
-	return service.getById(id);
-}
-@PostMapping("/add")
-public Profile createProfile(@RequestBody Profile profile) {
-	return service.createProfile(profile);
-}
-@DeleteMapping("/delete{id}")
-public void deleteProfile(@PathVariable Long id) {
-	service.deleteProfile(id);
-}
-@PutMapping("/update/{id}")
-public Profile updateProfile(@PathVariable Long id, @RequestBody Profile profile) {
-    return service.updateProfile(id, profile);
-}
+
+	@GetMapping("/{id}")
+	public Profile getById(@PathVariable Long id) {
+		return service.getById(id);
+	}
+
+	@PostMapping("/add")
+	public Profile createProfile(@RequestBody Profile profile) {
+		return service.createProfile(profile);
+	}
+
+	@DeleteMapping("/delete{id}")
+	public void deleteProfile(@PathVariable Long id) {
+		service.deleteProfile(id);
+	}
+
+	@PutMapping("/update/{id}")
+	public Profile updateProfile(@PathVariable Long id, @RequestBody Profile profile) {
+		return service.updateProfile(id, profile);
+	}
 }
