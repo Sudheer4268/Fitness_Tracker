@@ -20,24 +20,23 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
-
-    // Signup - returns created user
+   
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody User user) {
         try {
             User savedUser = service.registerUser(user);
-            return ResponseEntity.ok(savedUser); // 200 OK with user JSON
+            return ResponseEntity.ok(savedUser); 
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
-    // Login - returns user if successful
+   
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         User user = service.getUserByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
         if (user != null) {
-            return ResponseEntity.ok(user); // 200 OK with user JSON
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password!");
         }
@@ -56,5 +55,9 @@ public class UserController {
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
         return service.deleteUser(id);
+    }
+    @PutMapping("/{id}/getstarted")
+    public User markGetStarted(@PathVariable Long id) {
+        return service.markGetStarted(id);
     }
 }

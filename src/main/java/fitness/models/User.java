@@ -21,9 +21,26 @@ public class User {
 	private String phone;
 	@Column(name="user_password")
 	private String password;
+	@Column(name="get_started")
+	private Boolean getstarted=false;
+	
+	public User() {
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
+	
+	public Boolean getGetstarted() {
+		return getstarted;
+	}
+
+	public void setGetstarted(Boolean getstarted) {
+		this.getstarted = getstarted;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -51,17 +68,17 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public User(Long id, String name, String email, String phone, String password) {
+
+	public User(Long id, String name, String email, String phone, String password, Boolean getstarted) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.getstarted = getstarted;
 	}
-	public User() {
-	
-	}
+
 	
 	
 }
